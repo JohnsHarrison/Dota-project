@@ -5,6 +5,22 @@
   width: 100%;
 }
 
+.matchScore{
+  display:flex;
+  box-sizing:border-box;
+  justify-content:center;
+  background-image:  linear-gradient(135deg, #004b00d6, black, #cb0000);
+  color: white;
+  font-size: larger;
+  height: 50px;
+
+ 
+}
+
+.matchScore img{
+    height: 100%;
+  }
+
 .playerCard{
   display: flex;
   align-items: center;

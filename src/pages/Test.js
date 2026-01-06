@@ -43,29 +43,29 @@ console.log(herosData)
         typeof matchData === "string" ? (
         <div><p>{matchData}</p></div>) : (
         <div>
-            <p>In game time -  {Math.floor(matchData.duration / 60) }:{matchData.duration % 60}  </p> 
-            <p>This game ended with a score of Radiant:{matchData.radiant_score} / Dire: {matchData.dire_score} for a {matchData.radiant_win ? "radiant victory." : "Dire Victory"}</p>
+            {/* <p>In game time -  {Math.floor(matchData.duration / 60) }:{matchData.duration % 60}  </p> 
+            <p>This game ended with a score of Radiant:{matchData.radiant_score} / Dire: {matchData.dire_score} for a {matchData.radiant_win ? "radiant victory." : "Dire Victory"}</p> */}
             <div>
                 {/* DISPLAY PLAYERS AND SCORE */}
                 
-                <div style={{display:"flex",boxSizing:"border-box", justifyContent:"center"}}>
-                    <div style={{display:"flex",alignItems:"center"}}><p>RADIANT</p>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[0].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[1].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[2].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[3].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[4].hero_id].img}`} alt=""/>
+                <div className="matchScore">
+                    <div style={{display:"flex",alignItems:"center"}}><p style={{marginRight:"10px"}}>RADIANT</p>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[0].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[1].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[2].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[3].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[4].hero_id].img}`} alt=""/>
                     </div>
                     <p style={{margin:"auto 10px"}}>{matchData.radiant_score}</p>
-                    <p style={{margin:"auto 10px"}}>{Math.floor(matchData.duration / 60) }:{matchData.duration % 60}</p>
+                    <p style={{margin:"auto 10px", alignContent:"center"}}>{Math.floor(matchData.duration / 60) }:{matchData.duration % 60}</p>
                     <p style={{margin:"auto 10px"}}>{matchData.dire_score}</p>
                     <div style={{display:"flex",alignItems:"center"}}>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[5].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[6].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[7].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[8].hero_id].img}`} alt=""/>
-                        <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[9].hero_id].img}`} alt=""/>
-                        <p>DIRE</p>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[5].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[6].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[7].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[8].hero_id].img}`} alt=""/>
+                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[9].hero_id].img}`} alt=""/>
+                        <p style={{marginLeft:"10px"}}>DIRE</p>
                     </div>
                 </div>
 
