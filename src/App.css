@@ -61,3 +61,33 @@
 .playerCard .playerStats img{
   margin-left: 10px;
 }
+
+
+/* .playerCardTest{
+  background-color: grey;
+  color: white;
+  margin: 10px 0px;
+  font-size: 1.2em;
+  width: 75%;
+} */
+
+.scoreBoardTable{
+  border-collapse: collapse;
+  background-color: grey;
+  font-size: 1.2em;
+  color: white;
+}
+
+.scoreBoardTable .playerLevel{
+  outline: 3px solid black;
+  border-radius: 50%;
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+.scoreBoardTable .playerItems img{
+  width: 15%;
+}
+
+.scoreBoardTable td{
+}
