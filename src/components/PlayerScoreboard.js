@@ -2,19 +2,10 @@ import herosData from "../services/heros.json"
 import itemsData from "../services/items.json"
 import itemIds from "../services/itemsIDs.json"
 
-function PlayerScoreboard({data}){
-    console.log(data)
+// ALT METHOD
+// past this in return if using
 
-   const mappedPlayers = data.map((player,index)=>{
-     console.log(`player ${index} item number for slot 1 = ${player.item_0}`)
-     console.log(`player ${index} item number for slot 1 = ${player.item_1}`)
-     console.log(`player ${index} item number for slot 1 = ${player.item_2}`)
-     console.log(`player ${index} item number for slot 1 = ${player.item_3}`)
-     console.log(`player ${index} item number for slot 1 = ${player.item_4}`)
-     console.log(`player ${index} item number for slot 1 = ${player.item_5}`)
-        return (
-            
-        <div className="playerCard">
+/* <div className="playerCard">
             <p className="playerLevel">{player.level}</p>
             <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/>
             <div className="playerName">
@@ -35,13 +26,45 @@ function PlayerScoreboard({data}){
                 <img style={{width:"17px",height:"17px"}} src="https://spng.pngfind.com/pngs/s/8-87666_money-bag-free-vector-icon-designed-by-gregor.png" alt=""/>
                 <p>{player.total_gold}</p>
             </div>
-        </div>
+        </div> */
+
+function PlayerScoreboard({team, data}){
+    console.log(data)
+    console.log(team)
+
+   const mappedPlayers = data.map((player,index)=>{
+                if(player.isRadiant === team){
+                return (
+                <tr>
+                    <td className="playerLevel">{player.level}</td>
+                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.personaname ? player.personaname : "Anonymous"}</div></td>
+                    <td>{player.kills}</td>
+                    <td>{player.deaths}</td>
+                    <td>{player.assists}</td>
+                    <td className="playerItems">
+                         {player.item_0 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_0]].img}`} alt=""/> : null}
+                         {player.item_1 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_1]].img}`} alt=""/> : null}
+                         {player.item_2 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_2]].img}`} alt=""/> : null}
+                         {player.item_3 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_3]].img}`} alt=""/> : null}
+                         {player.item_4 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_4]].img}`} alt=""/> : null}
+                         {player.item_5 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_5]].img}`} alt=""/> : null}
+                    </td>
+                    <td>{player.last_hits} / 1{player.denies}</td>
+                    <td>{player.gold_per_min} / {player.xp_per_min}</td>
+                    <td>{player.total_gold}</td>
+                    <td>{player.hero_damage}</td>
+                    <td>{player.tower_damage}</td>
+                    <td>{player.hero_healing}</td>
+                </tr>
         )
+                }else{
+                 return null
+                }
     })
     return(
-    <div>
+        <>
         {mappedPlayers}
-    </div>
+        </>
     )
 }
 

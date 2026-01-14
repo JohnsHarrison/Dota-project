@@ -71,9 +71,50 @@ console.log(herosData)
 
             </div>
 
-            <div>
-                THIS IS WHERE PLAYERS WILL GO 
-                <PlayerScoreboard data={matchData.players}/>
+            <div style={{display:"flex", justifyContent:"center",flexDirection:"column" }}>
+                {/* THIS IS WHERE PLAYERS WILL GO  */}
+            <p style={{textAlign:"left", margin:"0", paddingLeft:"10px"}}>RADIANT</p>
+            <table className="scoreBoardTable">
+                <thead>
+                    <tr>
+                        <th style={{paddingLeft:"10px", width:"2%"}}>LVL</th>
+                        <th style={{width:"15%"}}>PLAYER</th>
+                        <th>K</th>
+                        <th>D</th>
+                        <th>A</th>
+                        <th style={{width:"20%"}}>ITEMS</th>
+                        <th>LH / DN</th>
+                        <th>GPM / XPM</th>
+                        <th>NW</th>
+                        <th>HD</th>
+                        <th>TD</th>
+                        <th>HH</th>
+                    </tr>
+                </thead>
+                <PlayerScoreboard team={true} data={matchData.players}/>
+            </table>
+
+            <p style={{textAlign:"left", margin:"0", paddingLeft:"10px"}}>DIRE</p>
+            <table className="scoreBoardTable">
+                <thead>
+                    <tr>
+                        <th style={{paddingLeft:"10px", width:"2%"}}>LVL</th>
+                        <th style={{width:"15%"}}>PLAYER</th>
+                        <th>K</th>
+                        <th>D</th>
+                        <th>A</th>
+                        <th style={{width:"20%"}}>ITEMS</th>
+                        <th>LH / DN</th>
+                        <th>GPM / XPM</th>
+                        <th>NW</th>
+                        <th>HD</th>
+                        <th>TD</th>
+                        <th>HH</th>
+                    </tr>
+                </thead>
+                <PlayerScoreboard team={false} data={matchData.players}/>
+            </table>
+                
             </div>
 
         </div>

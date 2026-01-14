@@ -8,12 +8,12 @@ function Home() {
             <table className="scoreBoardTable">
                 <thead>
                     <tr>
-                        <th>LVL</th>
+                        <th style={{paddingLeft:"10px"}}>LVL</th>
                         <th>PLAYER</th>
                         <th>K</th>
                         <th>D</th>
                         <th>A</th>
-                        <th>ITEMS</th>
+                        <th style={{width:"20%"}}>ITEMS</th>
                         <th>LH/DN</th>
                         <th>GPM/XPM</th>
                         <th>NW</th>
