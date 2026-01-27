@@ -37,7 +37,7 @@ function PlayerScoreboard({team, data}){
                 return (
                 <tr>
                     <td className="playerLevel">{player.level}</td>
-                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.personaname ? player.personaname : "Anonymous"}</div></td>
+                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.name !== null ? player.name : player.name === null ? player.personaname : "Anonymous"}</div></td>
                     <td>{player.kills}</td>
                     <td>{player.deaths}</td>
                     <td>{player.assists}</td>
@@ -49,7 +49,7 @@ function PlayerScoreboard({team, data}){
                          {player.item_4 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_4]].img}`} alt=""/> : null}
                          {player.item_5 > 0 ? <img src={`https://cdn.cloudflare.steamstatic.com${itemsData[itemIds[player.item_5]].img}`} alt=""/> : null}
                     </td>
-                    <td>{player.last_hits} / 1{player.denies}</td>
+                    <td>{player.last_hits} / {player.denies}</td>
                     <td>{player.gold_per_min} / {player.xp_per_min}</td>
                     <td>{player.total_gold}</td>
                     <td>{player.hero_damage}</td>

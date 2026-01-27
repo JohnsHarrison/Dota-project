@@ -1,159 +1,79 @@
-
+import Dire_icon from "../assets/Dire_icon.webp"
 
 function Home() {
+    const myUnixTimestamp = 1765333940
+    const myDate = (new Date(myUnixTimestamp * 1000)).toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  timeZone: 'America/New_York',
+  timeZoneName: 'short',
+});
     return (
         <div >
             <h3>home page</h3>
 
-            <table className="scoreBoardTable">
-                <thead>
-                    <tr>
-                        <th style={{paddingLeft:"10px"}}>LVL</th>
-                        <th>PLAYER</th>
-                        <th>K</th>
-                        <th>D</th>
-                        <th>A</th>
-                        <th style={{width:"20%"}}>ITEMS</th>
-                        <th>LH/DN</th>
-                        <th>GPM/XPM</th>
-                        <th>NW</th>
-                        <th>HD</th>
-                        <th>TD</th>
-                        <th>HH</th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td className="playerLevel">30</td>
-                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>Anonymous</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>20</td>
-                    <td className="playerItems">
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                    </td>
-                    <td>100 / 10</td>
-                    <td>690 / 420</td>
-                    <td>12000</td>
-                    <td>54000</td>
-                    <td>12000</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td className="playerLevel">30</td>
-                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>Anonymous</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>20</td>
-                    <td className="playerItems">
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                    </td>
-                    <td>100 / 10</td>
-                    <td>690 / 420</td>
-                    <td>12000</td>
-                    <td>54000</td>
-                    <td>12000</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td className="playerLevel">30</td>
-                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>Anonymous</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>20</td>
-                    <td className="playerItems">
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                    </td>
-                    <td>100 / 10</td>
-                    <td>690 / 420</td>
-                    <td>12000</td>
-                    <td>54000</td>
-                    <td>12000</td>
-                    <td>5000</td>
-                </tr>
-                <tr>
-                    <td className="playerLevel">30</td>
-                    <td className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>Anonymous</td>
-                    <td>10</td>
-                    <td>5</td>
-                    <td>20</td>
-                    <td className="playerItems">
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                        <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                    </td>
-                    <td>100 / 10</td>
-                    <td>690 / 420</td>
-                    <td>12000</td>
-                    <td>54000</td>
-                    <td>12000</td>
-                    <td>5000</td>
-                </tr>
-            </table>
+            <div class="chart">
+  <svg viewBox="0 0 300 150" class="line-graph">
+    {/* <!-- X and Y axis --> */}
+    <line x1="20" y1="10" x2="20" y2="130" class="axis" />
+    <line x1="20" y1="130" x2="280" y2="130" class="axis" />
 
-                <div className="playerCard">
-            <p className="playerLevel">30</p>
-            <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-            <div className="playerName">
-                <p>Anonymous</p>
-            </div>
-            <div className="playerItems">
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-                <img src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            </div>
-            <div className="playerStats">
-                <p>10 / 5 / 20</p>
-                <img style={{width:"17px",height:"17px"}} src="https://www.creativefabrica.com/wp-content/uploads/2022/12/16/Sword-icon-Retro-attack-weapon-War-bla-Graphics-52719675-1-1-580x387.png" alt=""/>
-                <p>40000</p>
-                <img style={{width:"17px",height:"17px"}} src="https://spng.pngfind.com/pngs/s/8-87666_money-bag-free-vector-icon-designed-by-gregor.png" alt=""/>
-                <p>25000</p>
-            </div>
-        </div>
-
-        <div className="playerCard">
-            <p className="playerLevel">30</p>
-            <img style={{width:"80px",height:"40px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/pudge.png?`} alt=""/>
-            <div className="playerName">
-                <p>Mr Poopy Butthole</p>
-            </div>
-
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <img style={{width:"40px",height:"40px"}} src={"https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/items/magic_wand.png?t=1593393829403"} alt=""/>
-            <p> __________________________ </p>
-            <p>10 / 5 / 20</p>
-            <img style={{width:"17px",height:"17px"}} src="https://www.creativefabrica.com/wp-content/uploads/2022/12/16/Sword-icon-Retro-attack-weapon-War-bla-Graphics-52719675-1-1-580x387.png" alt=""/>
-            <p>40000</p>
-            <p>____</p>
-            <img style={{width:"17px",height:"17px"}} src="https://spng.pngfind.com/pngs/s/8-87666_money-bag-free-vector-icon-designed-by-gregor.png" alt=""/>
-            <p>25000</p>
-        </div>
+    {/* <!-- Line --> */}
+    <polyline
+      points="20,120 70,90 120,100 170,60 220,80 270,40"
+      class="graph-line"
+    />
+  </svg>
+</div>
 
 
+                <div style={{display:"flex", width:"70%",flexDirection:"column",margin:"auto"}}>
+                    <div style={{display:"flex", justifyContent:"space-between",width:"100%",margin:"0px 0px 50px 0px"}}>
+                        <p>
+                          {myDate}   
+                        </p>
+                        <p>
+                           Ranked Team Matchmaking 
+                        </p>
+                    </div>
+                    <div style={{display:"flex", backgroundImage:`linear-gradient(129deg, #004b00d6, black, #cb0000)`,color: "white"}}>
+                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
+                        <div style={{}}>
+                            {/*team logo */}
+                            <img style={{width:"150px"}} src={Dire_icon} alt=""/>
+                            <p>DIRE</p>
+                            <div>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{display:"flex",width:"20%",justifyContent:"space-evenly",fontSize:"2em"}}>
+                        <p style={{margin:"auto 10px"}}>20</p>
+                        <p style={{margin:"auto 10px", alignContent:"center"}}>20:56</p>
+                        <p style={{margin:"auto 10px"}}>65</p> 
+                    </div>
+                         
+                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
+                        <div style={{}}>
+                            {/*team logo */}
+                            <img style={{width:"150px"}} src={Dire_icon} alt=""/>
+                            <p>DIRE</p>
+                            <div>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
         </div>
     )
 }

@@ -1,0 +1,82 @@
+{
+  "0": {
+    "id": 0,
+    "name": "Normal",
+    "balanced": true
+  },
+  "1": {
+    "id": 1,
+    "name": "Practice",
+    "balanced": true
+  },
+  "2": {
+    "id": 2,
+    "name": "Tournament",
+    "balanced": true
+  },
+  "3": {
+    "id": 3,
+    "name": "Tutorial",
+    "balanced": false
+  },
+  "4": {
+    "id": 4,
+    "name": "Coop Bots",
+    "balanced": false
+  },
+  "5": {
+    "id": 5,
+    "name": "Ranked Team Matchmaking",
+    "balanced": true
+  },
+  "6": {
+    "id": 6,
+    "name": "Solo Ranked Matchmaking",
+    "balanced": true
+  },
+  "7": {
+    "id": 7,
+    "name": "Ranked",
+    "balanced": true
+  },
+  "8": {
+    "id": 8,
+    "name": "1v1 mMid",
+    "balanced": false
+  },
+  "9": {
+    "id": 9,
+    "name": "Battle Cup",
+    "balanced": true
+  },
+  "10": {
+    "id": 10,
+    "name": "Local Bots",
+    "balanced": true
+  },
+  "11": {
+    "id": 11,
+    "name": "Spectator",
+    "balanced": true
+  },
+  "12": {
+    "id": 12,
+    "name": "Event",
+    "balanced": false
+  },
+  "13": {
+    "id": 13,
+    "name": "Gauntlet",
+    "balanced": true
+  },
+  "14": {
+    "id": 14,
+    "name": "New Player",
+    "balanced": false
+  },
+  "15": {
+    "id": 15,
+    "name": "Featured",
+    "balanced": false
+  }
+}

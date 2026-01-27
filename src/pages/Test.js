@@ -2,6 +2,9 @@ import { useState } from "react"
 import { getMatch } from "../services/api.js"
 import PlayerScoreboard from "../components/PlayerScoreboard.js"
 import herosData from '../services/heros.json'
+import Dire_icon from "../assets/Dire_icon.webp"
+import Radiant_icon from "../assets/Radiant_icon.webp"
+import lobby_types from "../services/lobby_types.json"
 
 function Test(){
 const [matchData, setMatchData] = useState([])
@@ -25,17 +28,16 @@ console.log(matchData)
 // https://github.com/odota/dotaconstants/blob/master/build/heroes.json
 // possible idea, invoker spell casting game
 
-console.log(herosData)
-
     return(
         <div>
-            <p>testing with match ID 8598265551</p>
+            <p>testing with normal match ID 8598265551</p>
+            <p>testing with tournament match ID 8451467455</p>
             <h3>Enter Match ID</h3>
-            <input type="text" value={id} onChange ={ e =>{
+            <input style={{width:"10%"}} type="text" value={id} onChange ={ e =>{
                let input = e.target.value
                setID(input)}} placeholder="Match ID"/>
         
-            <button onClick={()=>{
+            <button style={{width:"10%"}} onClick={()=>{
                 handleClick(id)
             }}>Search Match</button>
 
@@ -47,27 +49,56 @@ console.log(herosData)
             <p>This game ended with a score of Radiant:{matchData.radiant_score} / Dire: {matchData.dire_score} for a {matchData.radiant_win ? "radiant victory." : "Dire Victory"}</p> */}
             <div>
                 {/* DISPLAY PLAYERS AND SCORE */}
-                
-                <div className="matchScore">
-                    <div style={{display:"flex",alignItems:"center"}}><p style={{marginRight:"10px"}}>RADIANT</p>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[0].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[1].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[2].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[3].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[4].hero_id].img}`} alt=""/>
+
+                                <div style={{display:"flex", width:"70%",flexDirection:"column",margin:"auto"}}>
+                    <div style={{display:"flex", justifyContent:"space-between",width:"100%",margin:"0px 0px 50px 0px"}}>
+                        <p>  
+                          {(new Date(matchData.start_time * 1000)).toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short',
+})}
+                        </p>
+                        <p>
+                           {lobby_types[matchData.lobby_type].name}
+                        </p>
                     </div>
-                    <p style={{margin:"auto 10px"}}>{matchData.radiant_score}</p>
-                    <p style={{margin:"auto 10px", alignContent:"center"}}>{Math.floor(matchData.duration / 60) }:{matchData.duration % 60}</p>
-                    <p style={{margin:"auto 10px"}}>{matchData.dire_score}</p>
-                    <div style={{display:"flex",alignItems:"center"}}>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[5].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[6].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[7].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[8].hero_id].img}`} alt=""/>
-                        <img src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[9].hero_id].img}`} alt=""/>
-                        <p style={{marginLeft:"10px"}}>DIRE</p>
+                    <div style={{display:"flex", backgroundImage:`linear-gradient(129deg, #004b00d6, black, #cb0000)`,color: "white",paddingTop:"20px"}}>
+                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
+                        <div style={{}}>
+                            {/*team logo */}
+                            <img style={{width:"150px"}} src={matchData.radiant_team !== undefined ? matchData.radiant_team.logo_url : Radiant_icon} alt=""/>
+                            <p>{matchData.radiant_team !== undefined ? matchData.radiant_team.name : "Radiant"}</p>
+                            <div>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[0].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[1].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[2].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[3].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[4].hero_id].img}`} alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{display:"flex",width:"20%",justifyContent:"space-evenly",fontSize:"2em"}}>
+                        <p style={{margin:"auto 10px"}}>{matchData.radiant_score}</p>
+                        <p style={{margin:"auto 10px", alignContent:"center"}}>{Math.floor(matchData.duration / 60) }:{matchData.duration % 60}</p>
+                        <p style={{margin:"auto 10px"}}>{matchData.dire_score}</p>
+                    </div>
+                         
+                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
+                        <div style={{}}>
+                            {/*team logo */}
+                            <img style={{width:"150px"}} src={matchData.dire_team !== undefined ? matchData.dire_team.logo_url : Dire_icon} alt=""/>
+                            <p>{matchData.dire_team !== undefined ? matchData.dire_team.name : "Dire"}</p>
+                            <div>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[5].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[6].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[7].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[8].hero_id].img}`} alt=""/>
+                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[9].hero_id].img}`} alt=""/>
+                            </div>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
+
 
             </div>
 
