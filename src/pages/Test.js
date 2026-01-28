@@ -5,6 +5,7 @@ import herosData from '../services/heros.json'
 import Dire_icon from "../assets/Dire_icon.webp"
 import Radiant_icon from "../assets/Radiant_icon.webp"
 import lobby_types from "../services/lobby_types.json"
+import PicksBans from "../components/PicksBans.js"
 
 function Test(){
 const [matchData, setMatchData] = useState([])
@@ -15,7 +16,7 @@ async function handleClick(id){
     try{
     setMatchData(await getMatch(id))
     
-console.log(matchData)
+// console.log(matchData)
 }catch (error) {
     console.log(error.message)
     setMatchData(`${error.message}. Please check your Match ID and try again.`)
@@ -64,7 +65,7 @@ console.log(matchData)
                     <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
                         <div style={{}}>
                             {/*team logo */}
-                            <img style={{width:"150px"}} src={matchData.radiant_team !== undefined ? matchData.radiant_team.logo_url : Radiant_icon} alt=""/>
+                            <img style={{height:"100px"}} src={matchData.radiant_team === undefined ? Radiant_icon : matchData.radiant_team.logo_url !== null ? matchData.radiant_team.logo_url : Radiant_icon} alt=""/>
                             <p>{matchData.radiant_team !== undefined ? matchData.radiant_team.name : "Radiant"}</p>
                             <div>
                                 <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[0].hero_id].img}`} alt=""/>
@@ -84,7 +85,7 @@ console.log(matchData)
                     <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
                         <div style={{}}>
                             {/*team logo */}
-                            <img style={{width:"150px"}} src={matchData.dire_team !== undefined ? matchData.dire_team.logo_url : Dire_icon} alt=""/>
+                            <img style={{height:"100px"}} src={matchData.dire_team === undefined ? Dire_icon : matchData.dire_team.logo_url !== null ? matchData.dire_team.logo_url : Dire_icon} alt=""/>
                             <p>{matchData.dire_team !== undefined ? matchData.dire_team.name : "Dire"}</p>
                             <div>
                                 <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[matchData.players[5].hero_id].img}`} alt=""/>
@@ -98,8 +99,11 @@ console.log(matchData)
 
                     </div>
                 </div>
+            </div>
 
-
+            {/* PICKS AND BANS */}
+            <div style={{display:"flex", height: "100px", alignItems: "center", justifyContent: "center"}}>
+                <PicksBans data={matchData.picks_bans}/>
             </div>
 
             <div style={{display:"flex", justifyContent:"center",flexDirection:"column" }}>

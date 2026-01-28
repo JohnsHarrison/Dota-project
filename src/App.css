@@ -145,3 +145,38 @@ text-align: left;
     stroke-dashoffset: 0;
   }
 }
+
+.containerTest {
+  position: relative;
+    height: 40px;
+    width: 100%;
+    margin-right: 0px;
+    z-index: 0;
+    
+}
+
+
+.containerBanTest {
+position: absolute;
+    z-index: 1;
+    left: -2px;
+    right: -3px;
+    top: 18px;
+    border-top: 2px solid rgb(255, 76, 76);
+    transform: rotate(330deg);
+}
+
+.pickBanRadiant{
+  position: absolute;
+  top: -15px;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 15px solid green
+}
+.pickBanDire{
+  position: absolute;
+  bottom: -11px;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-top: 15px solid red;
+}

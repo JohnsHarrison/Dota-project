@@ -29,8 +29,8 @@ import itemIds from "../services/itemsIDs.json"
         </div> */
 
 function PlayerScoreboard({team, data}){
-    console.log(data)
-    console.log(team)
+    // console.log(data)
+    // console.log(team)
 
    const mappedPlayers = data.map((player,index)=>{
                 if(player.isRadiant === team){

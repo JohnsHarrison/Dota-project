@@ -26,6 +26,8 @@ function Home() {
   </svg>
 </div>
 
+<img className="containerTest" src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
+
 
                 <div style={{display:"flex", width:"70%",flexDirection:"column",margin:"auto"}}>
                     <div style={{display:"flex", justifyContent:"space-between",width:"100%",margin:"0px 0px 50px 0px"}}>
