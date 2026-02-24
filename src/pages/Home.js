@@ -1,81 +1,72 @@
-import Dire_icon from "../assets/Dire_icon.webp"
+import { useEffect, useState } from "react";
+
 
 function Home() {
-    const myUnixTimestamp = 1765333940
-    const myDate = (new Date(myUnixTimestamp * 1000)).toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  timeZone: 'America/New_York',
-  timeZoneName: 'short',
-});
+const [stream, setStream] = useState("")
+const [darkMode, setDarkMode] = useState("&darkpopout")
+
+      useEffect(() => {
+
+       let num = Math.floor(Math.random() * 3)
+       if(num === 0){
+        setStream("esl_dota2")
+       }else if(num === 1){
+        setStream("esl_sc2")
+       }else{
+        setStream("eslcs")
+       }
+       console.log(num)
+  }, []);
+
     return (
         <div >
             <h3>home page</h3>
+        <p>Current Live ESports</p>
+        <p>now watching {stream}</p>
+        <div className="embeddedVideo">
+        <iframe
+        title="ESL"
+    src={`https://player.twitch.tv/?channel=${stream}&parent=localhost&autoplay=true&muted=false&time=0s`}
+    height="600px"
+    width="1050px"
+    allowFullScreen>
+        </iframe>
+        <div style={{display:"flex", flexDirection:"column", position:"relative"}}>
+            <button className={darkMode === "&darkpopout" ? "darkModeButtonEnabled" : "darkModeButton"} onClick={()=>{
+                if(darkMode === "&darkpopout"){
+                    setDarkMode("") 
+                    
+                }else{
+                    setDarkMode("&darkpopout")
+                }
+            }
+            }>{darkMode === "&darkpopout" ? "Disable Dark Mode" : "Enable Dark Mode"}</button>
+        <iframe
+        title="esl chat" 
+        src={`https://www.twitch.tv/embed/${stream}/chat?parent=localhost${darkMode}`}
+        height="600px"
+        width="300px"
+        sandbox>
+    </iframe>
+    </div>
+    </div>
+        <div>
+            <button onClick={()=>{setStream("esl_dota2")}}>
+                DOTA 2
+            </button>
+            <button onClick={()=>{setStream("esl_sc2")}}>
+                Star Craft 2
+            </button>
+            <button onClick={()=>{setStream("eslcs")}}>
+                Counter Strike 2
+            </button>
+             <button onClick={()=>{setStream("iannihilate")}}>
+                TEST
+            </button>
+        </div>
 
-            <div class="chart">
-  <svg viewBox="0 0 300 150" class="line-graph">
-    {/* <!-- X and Y axis --> */}
-    <line x1="20" y1="10" x2="20" y2="130" class="axis" />
-    <line x1="20" y1="130" x2="280" y2="130" class="axis" />
-
-    {/* <!-- Line --> */}
-    <polyline
-      points="20,120 70,90 120,100 170,60 220,80 270,40"
-      class="graph-line"
-    />
-  </svg>
-</div>
-
-<img className="containerTest" src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-
-
-                <div style={{display:"flex", width:"70%",flexDirection:"column",margin:"auto"}}>
-                    <div style={{display:"flex", justifyContent:"space-between",width:"100%",margin:"0px 0px 50px 0px"}}>
-                        <p>
-                          {myDate}   
-                        </p>
-                        <p>
-                           Ranked Team Matchmaking 
-                        </p>
-                    </div>
-                    <div style={{display:"flex", backgroundImage:`linear-gradient(129deg, #004b00d6, black, #cb0000)`,color: "white"}}>
-                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
-                        <div style={{}}>
-                            {/*team logo */}
-                            <img style={{width:"150px"}} src={Dire_icon} alt=""/>
-                            <p>DIRE</p>
-                            <div>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div style={{display:"flex",width:"20%",justifyContent:"space-evenly",fontSize:"2em"}}>
-                        <p style={{margin:"auto 10px"}}>20</p>
-                        <p style={{margin:"auto 10px", alignContent:"center"}}>20:56</p>
-                        <p style={{margin:"auto 10px"}}>65</p> 
-                    </div>
-                         
-                    <div style={{display:"flex",flexDirection:"column",width:"40%"}} >
-                        <div style={{}}>
-                            {/*team logo */}
-                            <img style={{width:"150px"}} src={Dire_icon} alt=""/>
-                            <p>DIRE</p>
-                            <div>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                                <img style={{width:"80px"}} src={`https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png?`} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
+        
+     
         </div>
     )
 }

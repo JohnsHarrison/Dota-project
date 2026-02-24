@@ -155,6 +155,25 @@ text-align: left;
     
 }
 
+.embeddedVideo{
+display: flex;
+justify-content: center;
+}
+
+.darkModeButton{
+  position: absolute;
+  right: 0;
+  top: -20px
+}
+
+.darkModeButtonEnabled{
+  position: absolute;
+  right: 0;
+  top: -20px;
+  background-color:#18181b;
+  color: #efeff1;
+}
+
 
 .containerBanTest {
 position: absolute;
