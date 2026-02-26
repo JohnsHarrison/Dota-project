@@ -152,7 +152,11 @@ text-align: left;
     width: 100%;
     margin-right: 0px;
     z-index: 0;
-    
+}
+
+.playerHeader{
+  display: flex;
+  flex-direction: row;
 }
 
 .embeddedVideo{
@@ -198,4 +202,35 @@ position: absolute;
   border-left: 35px solid transparent;
   border-right: 35px solid transparent;
   border-top: 15px solid red;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+
+.percentage {
+  fill: #666;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+.circular-chart .circle {
+  fill: none;
+  stroke: #4caf50;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  transform-origin: 50% 50%;
+  transition: stroke-dashoffset 1.8s ease-out;
+   will-change: stroke-dashoffset
+}
+
+.circular-chart .circle-bg {
+  fill: none;
+  stroke: #e90505;
+  stroke-width: 2.8;
 }
