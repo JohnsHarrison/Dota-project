@@ -1,14 +1,20 @@
 import { getPlayer,getPlayerTotals, getPlayerWinLoss } from "../services/api"
 import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom";
 
 
-function PlayerProfile(id){
+
+function PlayerProfile(){
+const navigate = useNavigate();
 const [playerData, setPlayerData] = useState(null)    
 const [progress, setProgress] = useState(0);
 const [percentage, setPercentage] = useState(0)
 const radius = 15.9155;
 const circumference = 2 * Math.PI * radius;
-const number = 397119848
+
+// save for testing
+// const number = 397119848
+const {id} = useParams()
 
 const shortenNumber = (num) => {
   return new Intl.NumberFormat('en-US', {
@@ -17,17 +23,13 @@ const shortenNumber = (num) => {
   }).format(num);
 };
 
-console.log(shortenNumber(900))
-console.log(shortenNumber(28580))
-console.log(shortenNumber(140082530))
-
       useEffect(() => {
     const fetchData = async () => {
      
         // Define your API requests
-        const apiCallOne = getPlayer(number);
-        const apiCallTwo = getPlayerTotals(number);
-        const apiCallThree = getPlayerWinLoss(number);
+        const apiCallOne = getPlayer(id);
+        const apiCallTwo = getPlayerTotals(id);
+        const apiCallThree = getPlayerWinLoss(id);
 
         // Use Promise.all() to run them in parallel
         const [responseOne, responseTwo, responseThree] = await Promise.all([apiCallOne, apiCallTwo, apiCallThree]);
@@ -52,13 +54,13 @@ console.log(shortenNumber(140082530))
     setProgress(percentage);
   }, 100);
     // console.log(playerData)
-  }, [percentage]); 
+  }, [percentage,id]); 
 
   const offset = circumference - (progress / 100) * circumference;
 
     return(
         <div>{playerData === null ? null :
-            
+            <div>
             <div className="playerHeader">  
                  <div>    
                      <p style={{margin: "0", fontSize: "32px", fontWeight: "bold"}}>{playerData.dataOne.profile.personaname}</p>             
@@ -135,11 +137,16 @@ console.log(shortenNumber(140082530))
                 </div>
                 
 
-                
+                <button onClick={() => navigate(-1)}>
+      Go Back
+    </button>
             </div>
 
+            <div className="recentMatches">
+
+            </div>
             
-            
+            </div> 
             }
 
 

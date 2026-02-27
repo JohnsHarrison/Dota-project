@@ -41,6 +41,10 @@
 .playerCard .playerName{
   width: 15%;
 }
+.playerName a{
+  text-decoration: none;
+  color: inherit;
+}
 
 .playerCard .playerItems{
   display: flex;

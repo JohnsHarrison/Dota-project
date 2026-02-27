@@ -5,7 +5,8 @@ function Nav(){
          <nav className="header">
             <NavLink to={"/"}>Home</NavLink>
             <NavLink to={"/test"}>Test</NavLink>
-            <NavLink to={"/playerprofile"}>Player Profile</NavLink>  
+            {/* remove player id after testing */}
+            <NavLink to={"/playerprofile/140288368"}>Player Profile</NavLink>  
          </nav>
     )
 }
