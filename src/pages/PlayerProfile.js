@@ -58,64 +58,89 @@ console.log(shortenNumber(140082530))
 
     return(
         <div>{playerData === null ? null :
-            <div>
-            <div className="playerHeader">
-                <div>
-                    <img alt="Profile" src={playerData.dataOne.profile.avatarfull}/>
-                    <p>{playerData.dataOne.profile.personaname}</p>
+            
+            <div className="playerHeader">  
+                 <div>    
+                     <p style={{margin: "0", fontSize: "32px", fontWeight: "bold"}}>{playerData.dataOne.profile.personaname}</p>             
+                    <div  style={{display:"flex", justifyContent:"space-around"}}>
+                        <div style={{display:"flex"}}>
+                        <img alt="Profile" src={playerData.dataOne.profile.avatarfull} style={{marginRight:"20px", borderRadius:"25%"}}/>
+                        <div style={{display:"flex", flexDirection:"column", width:"200px", justifyContent:"center"}}>
+                            <div style={{display:"flex", justifyContent:"space-between"}}>
+                                <p style={{margin:"0"}}>WINS {playerData.dataThree.win}</p>
+                                <p style={{margin:"0"}}>LOSS {playerData.dataThree.lose}</p>
+                            </div>
+                            {/* <p>WIN RATE</p> */}
+                            <div class="single-chart">
+                              <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg"
+                                  d="M18 2.0845
+                                     a 15.9155 15.9155 0 0 1 0 31.831
+                                     a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <path
+                                    className="circle"
+                                    strokeDasharray={circumference}
+                                    strokeDashoffset={offset}
+                                    d="M18 2.0845
+                                        a 15.9155 15.9155 0 0 1 0 31.831
+                                        a 15.9155 15.9155 0 0 1 0 -31.831"
+                                />
+                                <text x="18" y="20.35" class="percentage">{((playerData.dataThree.win / (playerData.dataThree.lose + playerData.dataThree.win)) * 100).toFixed(2)}%</text>
+                              </svg>
+                            </div>
+                        </div>  
+                        </div>
+                    <table className="careerStats">
+                        <caption><strong>Career Stats</strong></caption>
+                    <tr>
+                        <th>Kills</th>
+                        <th>Deaths</th>
+                        <th>Assists</th>
+                        <th>K/D</th>
+                    </tr>
+                    <tr>
+                        <td>{playerData.dataTwo[0].sum}</td>
+                        <td>{playerData.dataTwo[1].sum}</td>
+                        <td>{playerData.dataTwo[2].sum}</td>
+                        <td>{(playerData.dataTwo[0].sum / playerData.dataTwo[1].sum).toFixed(2)}</td>
+                    </tr>
+                        <tr>
+                        <th>Tower Kills</th>
+                        <th>Neutral Kills</th>
+                        <th>Courier Kills</th>
+                        <th>Last Hits</th>
+                    </tr>
+                    <tr>
+                        <td>{shortenNumber(playerData.dataTwo[15].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[16].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[17].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[6].sum)}</td>
+                    </tr>
+                    <tr>
+                        <th>Hero Damage</th>
+                        <th>Tower Damage</th>
+                        <th>Hero Healing</th>
+                        <th>Denies</th>
+                    </tr>
+                    <tr>
+                        <td>{shortenNumber(playerData.dataTwo[11].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[12].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[13].sum)}</td>
+                        <td>{shortenNumber(playerData.dataTwo[7].sum)}</td>
+                    </tr>
+                </table>
+
+                    </div>
                 </div>
                 
-                <div>
-                    <p>WINS {playerData.dataThree.win}</p>
-                    <p>LOSS {playerData.dataThree.lose}</p>
-                    <p>WIN RATE {((playerData.dataThree.win / (playerData.dataThree.lose + playerData.dataThree.win)) * 100).toFixed(2)}%</p>
-                </div>
 
-                <div>
-                    <p>career totals</p>
-                    <div style={{display:"flex"}}>
-                       <p>Kills {playerData.dataTwo[0].sum}</p>
-                       <p>Deaths {playerData.dataTwo[1].sum}</p> 
-                       <p>Assists {playerData.dataTwo[2].sum}</p> 
-                       <p>K/D {(playerData.dataTwo[0].sum / playerData.dataTwo[1].sum).toFixed(2)}</p> 
-                    </div>
-                    <div style={{display:"flex"}}>
-                       <p>Tower Kills {shortenNumber(playerData.dataTwo[15].sum)}</p>
-                       <p>Neutral Kills {shortenNumber(playerData.dataTwo[16].sum)}</p> 
-                       <p>Courier Kills {shortenNumber(playerData.dataTwo[17].sum)}</p> 
-                       <p>Last Hits{shortenNumber(playerData.dataTwo[6].sum)}</p> 
-                    </div>
-                    <div style={{display:"flex"}}>
-                       <p>Hero Damage {shortenNumber(playerData.dataTwo[11].sum)}</p>
-                       <p>Tower Damage {shortenNumber(playerData.dataTwo[12].sum)}</p> 
-                       <p>Hero Healing {shortenNumber(playerData.dataTwo[13].sum)}</p> 
-                       <p>Denies {shortenNumber(playerData.dataTwo[7].sum)}</p> 
-                    </div> 
-                </div>
-              </div>
+                
+            </div>
 
-            <div class="single-chart">
-              <svg viewBox="0 0 36 36" class="circular-chart">
-                <path class="circle-bg"
-                  d="M18 2.0845
-                     a 15.9155 15.9155 0 0 1 0 31.831
-                     a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <path
-                    className="circle"
-                    strokeDasharray={circumference}
-                    strokeDashoffset={offset}
-                    d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                />
-                <text x="18" y="20.35" class="percentage">{((playerData.dataThree.win / (playerData.dataThree.lose + playerData.dataThree.win)) * 100).toFixed(2)}%</text>
-              </svg>
-            </div>
-            </div>
             
             
-        }
+            }
 
 
         </div>

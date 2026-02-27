@@ -156,7 +156,9 @@ text-align: left;
 
 .playerHeader{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-around;
+  /* margin: 0px 15px; */
 }
 
 .embeddedVideo{
@@ -180,7 +182,7 @@ justify-content: center;
 
 
 .containerBanTest {
-position: absolute;
+    position: absolute;
     z-index: 1;
     left: -2px;
     right: -3px;
@@ -204,10 +206,14 @@ position: absolute;
   border-top: 15px solid red;
 }
 
+.single-chart{
+  display: contents;
+}
+
 .circular-chart {
   display: block;
-  margin: 10px auto;
-  max-width: 80%;
+  margin: 5px auto;
+  max-width: 60%;
   max-height: 250px;
 }
 
@@ -233,4 +239,17 @@ position: absolute;
   fill: none;
   stroke: #e90505;
   stroke-width: 2.8;
+}
+
+.careerStats{
+  border: 2px solid black;
+  padding: 5px;
+  border-radius: 0 0 5px 5px;
+  width: 500px;
+}
+
+.careerStats caption{
+  border: 2px solid black;
+  border-radius: 5px 5px 0 0;
+  border-bottom: 0;
 }
