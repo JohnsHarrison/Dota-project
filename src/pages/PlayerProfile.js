@@ -1,6 +1,7 @@
 import { getPlayer,getPlayerTotals, getPlayerWinLoss } from "../services/api"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
+import RecentMatch from "../components/RecentMatch";
 
 
 
@@ -142,9 +143,7 @@ const shortenNumber = (num) => {
     </button>
             </div>
 
-            <div className="recentMatches">
-
-            </div>
+            <RecentMatch id={id}/>
             
             </div> 
             }

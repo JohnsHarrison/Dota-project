@@ -7,6 +7,7 @@ function Nav(){
             <NavLink to={"/test"}>Test</NavLink>
             {/* remove player id after testing */}
             <NavLink to={"/playerprofile/140288368"}>Player Profile</NavLink>  
+            <NavLink to={"/recentmatches"}> Recent Matches</NavLink>
          </nav>
     )
 }
