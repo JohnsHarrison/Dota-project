@@ -36,7 +36,7 @@ function PlayerScoreboard({team, data}){
    const mappedPlayers = data.map((player,index)=>{
                 if(player.isRadiant === team){
                 return (
-                <tr>
+                <tr key={index}>
                     <td className="playerLevel">{player.level}</td>
                     <Link style={{textDecoration:"none", color:"inherit"}} to={`/playerprofile/${player.account_id}`}> <td  className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.name !== null ? player.name : player.name === null ? player.personaname : "Anonymous"}</div></td></Link>
                     <td>{player.kills}</td>
