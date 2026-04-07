@@ -25,8 +25,8 @@ console.log(response.data)
 return response.data
 }
 
-export async function getPlayerRecentMatch(id){
-const response = await axios.get(`https://api.opendota.com/api/players/${id}/Matches?limit=5`)
+export async function getPlayerRecentMatch(id,count){
+const response = await axios.get(`https://api.opendota.com/api/players/${id}/Matches?limit=${count}`)
 console.log(response.data)
 return response.data
 }

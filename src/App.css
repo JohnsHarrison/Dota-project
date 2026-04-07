@@ -257,3 +257,35 @@ justify-content: center;
   border-radius: 5px 5px 0 0;
   border-bottom: 0;
 }
+
+.recentMatchContainer{
+  display: block;
+  border: 1px solid black;
+  width: 50%;
+}
+
+.recentMatchBanner{
+     display: flex;
+}
+
+.recentMatchBanner p{
+  margin: 5px 30px 0px 10px;
+}
+
+.recentMatchData{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.recentMatchData img{
+ width: 100px;
+ margin: 5px 10px;
+}
+
+.recentMatchData p{
+ font-size: 20px;
+ font-weight: bold;
+ margin: 2.5px 40px 2.5px 0px;
+}
+
