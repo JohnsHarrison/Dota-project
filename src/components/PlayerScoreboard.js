@@ -1,4 +1,4 @@
-import herosData from "../services/heros.json"
+import heroesData from "../services/heroes.json"
 import itemsData from "../services/items.json"
 import itemIds from "../services/itemsIDs.json"
 import { Link } from "react-router-dom"
@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 
 /* <div className="playerCard">
             <p className="playerLevel">{player.level}</p>
-            <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/>
+            <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[player.hero_id].img}`} alt=""/>
             <div className="playerName">
                 <p>{player.personaname ? player.personaname : "Anonymous"}</p>
             </div>
@@ -38,7 +38,7 @@ function PlayerScoreboard({team, data}){
                 return (
                 <tr key={index}>
                     <td className="playerLevel">{player.level}</td>
-                    <Link style={{textDecoration:"none", color:"inherit"}} to={`/playerprofile/${player.account_id}`}> <td  className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${herosData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.name !== null ? player.name : player.name === null ? player.personaname : "Anonymous"}</div></td></Link>
+                    <Link style={{textDecoration:"none", color:"inherit"}} to={`/playerprofile/${player.account_id}`}> <td  className="playerName"><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[player.hero_id].img}`} alt=""/><div className="textOverflow">{player.name !== null ? player.name : player.name === null ? player.personaname : "Anonymous"}</div></td></Link>
                     <td>{player.kills}</td>
                     <td>{player.deaths}</td>
                     <td>{player.assists}</td>

@@ -1,6 +1,6 @@
 import { getPlayerHeroes } from "../services/api"
 import { useState, useEffect } from "react"
-import herosData from "../services/heros.json"
+import heroesData from "../services/heroes.json"
 
 function PlayerHeroes(id){
 const [heroes,setHeroes] = useState()
@@ -30,8 +30,8 @@ useEffect(()=>{
           return(
             <div className="heroData" key={index}>
                 <div style={{width:"100px",marginRight:"10px"}}>
-                    <img src={`https://cdn.cloudflare.steamstatic.com${herosData[hero.hero_id].img}`} alt=""/>
-                    <p>{herosData[hero.hero_id].localized_name}</p>
+                    <img src={`https://cdn.cloudflare.steamstatic.com${heroesData[hero.hero_id].img}`} alt=""/>
+                    <p>{heroesData[hero.hero_id].localized_name}</p>
                 </div>
                 <div className="winRateContainer">
                     <div className="winRateRow">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import {getPlayerRecentMatch} from "../services/api"
-import herosData from "../services/heros.json"
+import heroesData from "../services/heroes.json"
 import lobby_types from "../services/lobby_types.json"
 
 function RecentMatch(id){
@@ -41,9 +41,9 @@ return(
                 <p>{match.match_id}</p>
             </div>
             <div className="recentMatchData">
-                <img src={`https://cdn.cloudflare.steamstatic.com${herosData[match.hero_id].img}`} alt=""/>
+                <img src={`https://cdn.cloudflare.steamstatic.com${heroesData[match.hero_id].img}`} alt=""/>
                 <div style={{textAlign:"left",width:"210px"}}>
-                   <p>{herosData[match.hero_id].localized_name}</p>
+                   <p>{heroesData[match.hero_id].localized_name}</p>
                     {
                     match.radiant_win && match.player_slot < 127 ? <p style={{color:"green"}}>WIN</p> :
                    !match.radiant_win && match.player_slot > 127 ? <p style={{color:"green"}}>WIN</p> :

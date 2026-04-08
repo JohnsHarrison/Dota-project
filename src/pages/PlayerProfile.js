@@ -2,7 +2,7 @@ import { getPlayer,getPlayerTotals, getPlayerWinLoss } from "../services/api"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 import RecentMatch from "../components/RecentMatch";
-import PlayerHeroes from "../components/PlayerHeros";
+import PlayerHeroes from "../components/PlayerHeroes";
 
 
 
