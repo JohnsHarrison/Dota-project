@@ -30,3 +30,9 @@ const response = await axios.get(`https://api.opendota.com/api/players/${id}/Mat
 console.log(response.data)
 return response.data
 }
+
+export async function getPlayerHeroes(id,count){
+const response = await axios.get(`https://api.opendota.com/api/players/${id}/heroes`)
+console.log(response.data)
+return response.data
+}

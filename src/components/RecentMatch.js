@@ -10,15 +10,13 @@ const [count, setCount] = useState(20)
 useEffect(() => {
     const fetchData = async () => {
          
-            // Define your API requests
             const apiCallOne  = await (getPlayerRecentMatch(id.id,count));
-    
-            // Process the data once all calls are complete
+
             setMatches(apiCallOne)   
        
         };
         
-        console.log(id.id)
+        // console.log(id.id)
         
     
         fetchData();
@@ -32,6 +30,7 @@ return(
     <div className="recentMatchContainer">
         {matches === null || matches === undefined || matches.length === 0 ? null : 
         <div>
+            
         
     {matches.map((match,index)=>{
         return(

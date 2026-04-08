@@ -2,6 +2,7 @@ import { getPlayer,getPlayerTotals, getPlayerWinLoss } from "../services/api"
 import { useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom";
 import RecentMatch from "../components/RecentMatch";
+import PlayerHeroes from "../components/PlayerHeros";
 
 
 
@@ -42,12 +43,7 @@ const shortenNumber = (num) => {
           dataThree: responseThree
         });
         setPercentage(((responseThree.win / (responseThree.lose + responseThree.win)) * 100).toFixed(2))
-        
-     
-        
-        
-   
-    };
+     };
 
     fetchData();
 
@@ -142,9 +138,10 @@ const shortenNumber = (num) => {
       Go Back
     </button>
             </div>
-
-            <RecentMatch id={id}/>
-            
+                <div style={{display: "flex",width: "100%", justifyContent: "space-between"}} >
+                    <RecentMatch id={id}/>
+                    <PlayerHeroes id={id} />
+                </div>
             </div> 
             }
 
