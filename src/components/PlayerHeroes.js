@@ -14,8 +14,8 @@ useEffect(()=>{
      };
         
      fetchData()
-     console.log(heroes)
-     console.log(id)    
+    //  console.log(heroes)
+    //  console.log(id)    
     },[id])
 
 
@@ -26,7 +26,6 @@ useEffect(()=>{
         
     {heroes.map((hero,index)=>{
         if(index <= count){
-            console.log((((hero.win / hero.games) * 100).toFixed(2)).toString())
           return(
             <div className="heroData" key={index}>
                 <div style={{width:"100px",marginRight:"10px"}}>

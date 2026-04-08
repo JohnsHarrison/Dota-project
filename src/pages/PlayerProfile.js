@@ -67,7 +67,7 @@ const shortenNumber = (num) => {
                         <div style={{display:"flex", flexDirection:"column", width:"200px", justifyContent:"center"}}>
                             <div style={{display:"flex", justifyContent:"space-between"}}>
                                 <p style={{margin:"0"}}>WINS {playerData.dataThree.win}</p>
-                                <p style={{margin:"0"}}>LOSS {playerData.dataThree.lose}</p>
+                                <p style={{margin:"0"}}>LOSSES {playerData.dataThree.lose}</p>
                             </div>
                             {/* <p>WIN RATE</p> */}
                             <div class="single-chart">
@@ -135,13 +135,17 @@ const shortenNumber = (num) => {
                 
 
                 <button onClick={() => navigate(-1)}>
-      Go Back
-    </button>
+                    Go Back
+                </button>
             </div>
+            {
+                playerData.dataThree.win + playerData.dataThree.lose === 0 ? <p>This Profile Is Private</p>:
                 <div style={{display: "flex",width: "100%", justifyContent: "space-between"}} >
-                    <RecentMatch id={id}/>
-                    <PlayerHeroes id={id} />
-                </div>
+                <RecentMatch id={id}/>
+                <PlayerHeroes id={id} />
+            </div>
+            }
+            
             </div> 
             }
 

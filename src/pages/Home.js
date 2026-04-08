@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 function Home() {
 const [stream, setStream] = useState("")
 const [darkMode, setDarkMode] = useState("&darkpopout")
+const [id,setID] = useState('')
+
+
 
       useEffect(() => {
 
@@ -65,7 +69,16 @@ const [darkMode, setDarkMode] = useState("&darkpopout")
             </button>
         </div>
 
+        <div>
+            <p>testing with normal match ID 8598265551</p>
+            <p>testing with tournament match ID 8451467455</p>
+            <h3>Enter Match ID</h3>
+            <input style={{width:"10%"}} type="text" value={id} onChange ={ e =>{
+               let input = e.target.value
+               setID(input)}} placeholder="Match ID"/>
         
+            <Link style={{textDecoration:"none", color:"inherit"}} to={`/match/${id}`}><button style={{width:"10%"}}>Search Match</button></Link>
+        </div>
      
         </div>
     )

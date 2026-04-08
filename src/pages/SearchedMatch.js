@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getMatch } from "../services/api.js"
 import PlayerScoreboard from "../components/PlayerScoreboard.js"
 import heroesData from '../services/heroes.json'
@@ -6,21 +6,40 @@ import Dire_icon from "../assets/Dire_icon.webp"
 import Radiant_icon from "../assets/Radiant_icon.webp"
 import lobby_types from "../services/lobby_types.json"
 import PicksBans from "../components/PicksBans.js"
+import { useParams } from "react-router-dom"
 
 function Test(){
 const [matchData, setMatchData] = useState([])
-const [id,setID] = useState('')
+const {id} = useParams()
 
-
-async function handleClick(id){
-    try{
+useEffect(()=>{
+const fetchData = async ()=>{
+       try{
     setMatchData(await getMatch(id))
     
 // console.log(matchData)
 }catch (error) {
     console.log(error.message)
     setMatchData(`${error.message}. Please check your Match ID and try again.`)
-}}
+} 
+}
+    
+fetchData()
+
+},[id])
+
+// const [id,setID] = useState('')
+
+
+// async function handleClick(id){
+//     try{
+//     setMatchData(await getMatch(id))
+    
+// // console.log(matchData)
+// }catch (error) {
+//     console.log(error.message)
+//     setMatchData(`${error.message}. Please check your Match ID and try again.`)
+// }}
 
 // TO DO
 // generate hero portrates and score like they would appear in a dota game
@@ -31,7 +50,7 @@ async function handleClick(id){
 
     return(
         <div>
-            <p>testing with normal match ID 8598265551</p>
+            {/* <p>testing with normal match ID 8598265551</p>
             <p>testing with tournament match ID 8451467455</p>
             <h3>Enter Match ID</h3>
             <input style={{width:"10%"}} type="text" value={id} onChange ={ e =>{
@@ -40,7 +59,7 @@ async function handleClick(id){
         
             <button style={{width:"10%"}} onClick={()=>{
                 handleClick(id)
-            }}>Search Match</button>
+            }}>Search Match</button> */}
 
         {matchData.length === 0 ? null :
         typeof matchData === "string" ? (

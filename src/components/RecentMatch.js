@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {getPlayerRecentMatch} from "../services/api"
 import heroesData from "../services/heroes.json"
 import lobby_types from "../services/lobby_types.json"
+import { Link } from "react-router-dom";
 
 function RecentMatch(id){
 const [matches,setMatches] = useState()
@@ -35,6 +36,7 @@ return(
     {matches.map((match,index)=>{
         return(
             <div key={index}>
+            <Link style={{textDecoration:"none", color:"inherit"}} to={`/match/${match.match_id}`}>  
             <div className="recentMatchBanner">
                 <p>{(new Date(match.start_time * 1000)).toLocaleString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York', timeZoneName: 'short'})}</p>
                 <p>{lobby_types[match.lobby_type].name}</p>
@@ -67,6 +69,7 @@ return(
                     <p>{match.assists}</p>
                 </div>
             </div>
+            </Link>  
         </div>
         )
       })}
