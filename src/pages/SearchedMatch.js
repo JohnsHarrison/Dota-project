@@ -7,6 +7,7 @@ import Radiant_icon from "../assets/Radiant_icon.webp"
 import lobby_types from "../services/lobby_types.json"
 import PicksBans from "../components/PicksBans.js"
 import { useParams } from "react-router-dom"
+import HoverPopupHero from "../components/HoverPopupHero.js"
 
 function Test(){
 const [matchData, setMatchData] = useState([])
@@ -87,11 +88,11 @@ fetchData()
                             <img style={{height:"100px"}} src={matchData.radiant_team === undefined ? Radiant_icon : matchData.radiant_team.logo_url !== null ? matchData.radiant_team.logo_url : Radiant_icon} alt=""/>
                             <p>{matchData.radiant_team !== undefined ? matchData.radiant_team.name : "Radiant"}</p>
                             <div>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[0].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[1].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[2].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[3].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[4].hero_id].img}`} alt=""/>
+                                <HoverPopupHero id={heroesData[matchData.players[0].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[0].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[1].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[1].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[2].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[2].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[3].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[3].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[4].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[4].hero_id].img}`} alt=""/></HoverPopupHero>
                             </div>
                         </div>
                     </div>
@@ -107,11 +108,11 @@ fetchData()
                             <img style={{height:"100px"}} src={matchData.dire_team === undefined ? Dire_icon : matchData.dire_team.logo_url !== null ? matchData.dire_team.logo_url : Dire_icon} alt=""/>
                             <p>{matchData.dire_team !== undefined ? matchData.dire_team.name : "Dire"}</p>
                             <div>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[5].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[6].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[7].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[8].hero_id].img}`} alt=""/>
-                                <img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[9].hero_id].img}`} alt=""/>
+                                <HoverPopupHero id={heroesData[matchData.players[5].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[5].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[6].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[6].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[7].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[7].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[8].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[8].hero_id].img}`} alt=""/></HoverPopupHero>
+                                <HoverPopupHero id={heroesData[matchData.players[9].hero_id]}><img style={{width:"100px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[matchData.players[9].hero_id].img}`} alt=""/></HoverPopupHero>
                             </div>
                         </div>
                     </div>

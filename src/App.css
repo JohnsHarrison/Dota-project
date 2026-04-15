@@ -356,3 +356,95 @@ margin-bottom: 10px;
   font-size: 14px;
 }
 
+.heroHoverWrapper {
+  position: absolute;
+  top: 25%;
+  left: 170%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  /* white-space: nowrap; */
+  font-size: 14px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  display: flex;
+  flex-direction:column;
+  width:200px;
+}
+
+.heroHoverImgWrapper {
+  position: relative;
+  display: inline-block;
+  height: 75px;
+  margin-right:10px;
+}
+
+.heroHoverImg {
+  display: block;
+  height: 75px;
+  /* width: 100%; */
+  margin:auto;
+}
+
+.heroHoverImgIcon {
+  position: absolute;
+  bottom: 0;
+  right: 27px;
+  width: 30px;
+}
+
+.heroRoleWrapper{
+  display:flex;
+  flex-wrap:wrap;
+  /* justify-content:space-evenly;
+  margin-top:5px; */
+}
+
+.heroRoleWrapper p{
+  border: 1px solid black;
+  margin: 0;
+  padding: 3px 6px 3px 6px;
+  background: #181818;
+  box-shadow: 2px 6px 4px 0px rgba(0, 0, 0, 0.2);
+  margin:0px 5px 5px 0px 
+}
+
+.attributeContainer{
+  display: flex;
+  margin-top: 5px;
+  /* margin-bottom:5px; */
+  justify-content: space-between;
+  height:15px;
+  padding:5px 10px 5px 10px;
+  align-items:center;
+  border:1px solid black;
+}
+
+.attributeContainer img{
+  width: 20px;
+  height:20px;
+  margin-right:5px;
+}
+
+.attributeContainer p{
+  margin:0;
+}
+
+.heroStatsContainer{
+  display:flex;
+  justify-content: space-between;
+}
+
+.heroStatsContainer p{
+  font-size:12px
+}
+
+.heroStatsContainerData{
+  display:flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
