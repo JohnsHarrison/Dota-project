@@ -3,11 +3,11 @@ import Strength_icon from "../assets/Strength_icon.png"
 import Agility_icon from "../assets/Agility_icon.png"
 import Intelligence_icon from "../assets/Intelligence.png"
 import Universal_icon from "../assets/Universal_icon.png"
+import { Link } from "react-router-dom";
 
-function HoverPopup({id , children }) {
+function HoverPopupHero({id , children }) {
   const [isHovered, setIsHovered] = useState(false);
   const hoverTimeout = useRef(null);
-
   const handleMouseEnter = () => {
     hoverTimeout.current = setTimeout(() => {
       setIsHovered(true);
@@ -34,15 +34,15 @@ function HoverPopup({id , children }) {
        {isHovered ? 
         <div className="heroHoverWrapper"
         ><p style={{margin:"0", fontSize:"32px",marginBottom:"5px"}}>{id.localized_name}</p>
-          <div className="heroHoverImgWrapper">
+          <Link to={`/herodetails/${id.id}`}><div className="heroHoverImgWrapper">
           <img className="heroHoverImg" src={`https://cdn.cloudflare.steamstatic.com/${id.img}`} alt=""/>
           <img className="heroHoverImgIcon" src={id.primary_attr === "str" ? Strength_icon : id.primary_attr === "agi" ? Agility_icon : id.primary_attr === "int" ? Intelligence_icon : id.primary_attr === "all" ? Universal_icon : null} alt="" />
-        </div>
+        </div></Link>
             {/* HERO HEALTH/MANA IS CURRENTLY 22 PER STR AND 12 PER INT */}
             <div style={{backgroundColor:"#508b38", borderRadius:"5px",marginTop:"5px"}}>
               <p style={{margin:"0"}}>{id.base_mana + (id.base_str * 22)}</p>
             </div>
-            <div style={{backgroundColor:"#3c6dd3", borderRadius:"5px",marginTop:"2px"}}>
+            <div style={{backgroundColor:"#3c6dd3", borderRadius:"5px",marginTop:"2px", marginBottom:"5px"}}>
               <p style={{margin:"0"}}>{id.base_health + (id.base_int * 12)}</p>
             </div>    
               <div className="heroRoleWrapper">
@@ -100,4 +100,4 @@ function HoverPopup({id , children }) {
   );
 }
 
-export default HoverPopup;
+export default HoverPopupHero;

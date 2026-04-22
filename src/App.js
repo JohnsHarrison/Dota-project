@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import PlayerProfile from './pages/PlayerProfile';
 import RecentMatch from './components/RecentMatch';
 import SearchedMatch from "./pages/SearchedMatch"
+import HeroDetails from './pages/HeroDetails';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/match/:id' element={<SearchedMatch/>}/>
         <Route path='/playerprofile/:id' element={<PlayerProfile/>}/>
         <Route path='/recentmatches' element={<RecentMatch/>}/>
+        <Route path='/herodetails/:id' element={<HeroDetails/>}/>
      </Routes>
     </div>
   );
