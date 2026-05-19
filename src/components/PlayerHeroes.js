@@ -9,8 +9,8 @@ const [count,setCount]= useState(10)
 useEffect(()=>{
          
     const fetchData = async () => {
-        const apiCallOne  = await (getPlayerHeroes(id.id));  
-        setHeroes(apiCallOne)   
+        const results  = await (getPlayerHeroes(id.id));  
+        setHeroes(results)   
      };
         
      fetchData()

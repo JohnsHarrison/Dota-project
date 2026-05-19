@@ -1,36 +1,39 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import items from "../services/items.json"
+import itemIDs from "../services/itemsIDs.json"
 import heroesData from "../services/heroes.json"
 import heroLore from "../services/heroLore.json"
+import { getHeroesItems } from "../services/api"
 import { useParams } from "react-router-dom"
 import heroAbilities from "../services/heroAbilities.json"
 import heroAbilityData from "../services/heroAbilityData.json"
 import HoverPopupAbility from "../components/HoverPopupAbility"
+import HoverPopupItem from "../components/HoverPopupItem"
 import Strength_icon from "../assets/Strength_icon.png"
 import Agility_icon from "../assets/Agility_icon.png"
 import Intelligence_icon from "../assets/Intelligence.png"
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 function HeroDetails(){
 const {id} = useParams()
 // console.log(heroesData[id])
-console.log(Math.round(heroesData[id].base_mana_regen  + ((heroesData[id].base_int * 0.05)*10))/10)
-const [display, setDisplay] = useState("lore")    
+const [display, setDisplay] = useState("lore")   
+const [popularItems, setPopularItems] = useState(null) 
 // console.log(heroAbilities[heroesData[id].name].abilities)
-const mappedAbilities = (heroAbilities[heroesData[id].name].abilities).map((data,index)=>{
-  // console.log(heroAbilityData[data])
-  if(data === "generic_hidden" || heroAbilityData[data].is_innate){
+const mappedAbilities = (heroAbilities[heroesData[id].name].abilities).flat().map((data,index)=>{
+  if(data === "generic_hidden" || heroAbilityData[data].is_innate) {
     return null
   }else{  
     return(
-      
+     
    
       <HoverPopupAbility data={heroAbilityData[data]}>
         <img src={`https://cdn.cloudflare.steamstatic.com${heroAbilityData[data].img}`}/>
       </HoverPopupAbility>
-    
+   
   )
   }
 })
@@ -38,10 +41,41 @@ const mappedRoles = heroesData[id].roles.map((role,key)=>{
     return(<p style={{margin:"0px 5px 5px 0px"}}>{role}</p>)
   })
 
+const mappedItems = popularItems && Object.entries(popularItems).map(([category, itemObj]) => (
+  <div style={{width:"20%",textAlign:"left"}} key={category}>
+    <h3 style={{margin:"0"}}>{category.toUpperCase().replaceAll("_", " ")}</h3>
+      {Object.entries(itemObj).map(([itemName]) => (
+      <HoverPopupItem data={items[itemIDs[itemName]]}>  
+      <img style={{height:"24px",width:"32px",marginRight:"5px"}} key={itemName} src={`https://cdn.cloudflare.steamstatic.com/${items[itemIDs[itemName]].img}`}/>
+      </HoverPopupItem>   
+    ))}
+    
+    
+  </div>
+))
+ 
+useEffect(() => {
+
+  const fetchData = async () => {     
+            const results  = await (getHeroesItems(id));
+            setPopularItems(results)    
+        }
+      fetchData()
+  const link = document.querySelector("link[rel='icon']");
+  link.href = `https://cdn.cloudflare.steamstatic.com/${heroesData[id].icon}`;
+ 
+  return () => {
+    link.href = 'https://th.bing.com/th/id/R.1115f2f2779555a740792e17741d80b1?rik=3QDk7HP78E4Fbw&pid=ImgRaw&r=0';
+  };
+}, [id]);
+
+
+ 
       return(
         <div>
           <div className="heroDetailsHeader">
-            <div style={{display:"flex", width:"500px", textAlign:"left"}}>
+            <div style={{display:"flex", flexDirection:"column"}}>
+            <div style={{display: "flex", width: "500px", textAlign: "left", flexDirection: "row", alignItems: "center", marginBottom:"10px"}}>
               <img style={{marginRight:'10px', width:"250px", height:"150px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[id].img}`}/>
               <div>
                 <p style={{fontSize:"32px", margin:"0px 0px 10px 0px"}}>
@@ -49,21 +83,24 @@ const mappedRoles = heroesData[id].roles.map((role,key)=>{
                 </p>
                 <div style={{display:'flex', flexWrap:"wrap", width:"200px"}}>
                   <p style={{margin:"0px 5px 0px 0px"}}>
-                  {heroesData[id].attack_type} 
+                  {heroesData[id].attack_type}
                   </p>
                   {mappedRoles}
                 </div>
               </div>
-              
             </div>
-            
-            
             <div className="heroAbilityContainer">
-            {mappedAbilities}
+                {mappedAbilities}
+              </div>
             </div>
-          </div>
-          
-
+         
+           
+           
+           
+         
+          <div className="heroDetailsStatsWrapper">
+         
+       
           <div style={{width:"200px", border:"1px solid black", padding:"10px"}}>
             <h1 style={{margin:"5px 0px 10px 0px"}}>Attributes</h1>
             <div className="attributeContainer" style={{backgroundColor: heroesData[id].primary_attr === "str" || heroesData[id].primary_attr === "all" ? "#ff000056" : null}}>
@@ -71,103 +108,105 @@ const mappedRoles = heroesData[id].roles.map((role,key)=>{
                   <img src={Strength_icon} alt=""/>
                   <p>Str</p>
                 </div>
-                <p><strong>{heroesData[id].base_str}</strong> + {heroesData[id].str_gain}</p>       
+                <p><strong>{heroesData[id].base_str}</strong> + {heroesData[id].str_gain}</p>      
               </div>
               <div className="attributeContainer" style={{backgroundColor: heroesData[id].primary_attr === "agi" || heroesData[id].primary_attr === "all" ? "#00ff555d" : null}}>
                 <div style={{display:"flex", alignItems:"center"}}>
                   <img src={Agility_icon} alt=""/>
                   <p>Agi</p>
                 </div>
-                <p><strong>{heroesData[id].base_agi}</strong> + {heroesData[id].agi_gain}</p>       
+                <p><strong>{heroesData[id].base_agi}</strong> + {heroesData[id].agi_gain}</p>      
               </div>
               <div className="attributeContainer" style={{backgroundColor: heroesData[id].primary_attr === "int" || heroesData[id].primary_attr === "all" ? "#002fff5b" : null}}>
                 <div style={{display:"flex", alignItems:"center"}}>
                   <img src={Intelligence_icon} alt=""/>
                   <p>Int</p>
                 </div>
-                <p><strong>{heroesData[id].base_int}</strong> + {heroesData[id].int_gain}</p>       
+                <p><strong>{heroesData[id].base_int}</strong> + {heroesData[id].int_gain}</p>      
             </div>
            </div>
-
-           <div style={{width:"200px", border:"1px solid black", padding:"10px"}}>
-            <h1 style={{margin:"5px 0px 10px 0px"}}>Defense</h1>
  
-               <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Armor</p>
-                </div>
-                <p>{Math.round(((heroesData[id].base_agi * 0.167) + heroesData[id].base_armor) * 10) / 10}</p>       
-            </div>
-            <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Magic Resistance</p>
-                </div>
-                <p>{heroesData[id].base_mr +( heroesData[id].base_int * .1)}</p>       
-            </div>
-           </div>
-
-            <div style={{width:"200px", border:"1px solid black", padding:"10px"}}>
-            <h1 style={{margin:"5px 0px 10px 0px"}}>Mobility</h1>
- 
-               <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Movement Speed</p>
-                </div>
-                <p>{heroesData[id].move_speed}</p>       
-            </div>
-            <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Vision</p>
-                </div>
-                <p>{heroesData[id].day_vision} \ {heroesData[id].night_vision}</p>       
-            </div>
-           </div>
-
-           <div style={{width:"200px", border:"1px solid black", padding:"10px"}}>
-            <h1 style={{margin:"5px 0px 10px 0px"}}>Attack</h1>
- 
-               <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Damage</p>
-                </div>
-                <p>{heroesData[id].base_attack_min} - {heroesData[id].base_attack_max}</p>     
-            </div>
-            <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Base Attack Speed</p>
-                </div>
-                <p>{heroesData[id].attack_rate}</p>       
-            </div>
-            <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Range</p>
-                </div>
-                <p>{heroesData[id].attack_range}</p>       
-            </div>
-            <div className="attributeContainer">
-                <div style={{display:"flex", alignItems:"center"}}>
-                  <p>Projectile Speed</p>
-                </div>
-                <p>{heroesData[id].projectile_speed}</p>       
-            </div>
-           </div>
-
-           <div style={{width:"200px", border:"1px solid black", padding:"10px"}}>
+           
+          <div className="heroDetailsStats">
             <h1 style={{margin:"5px 0px 10px 0px"}}>Base Health / Mana</h1>
               <div style={{backgroundColor:"#508b38", borderRadius:"5px",marginTop:"5px"}}>
               <p style={{margin:"0"}}>{heroesData[id].base_health + (heroesData[id].base_str * 22)} + {Math.round(heroesData[id].base_health_regen  + ((heroesData[id].base_str * 0.09)* 10)) /10}/s</p>
             </div>
             <div style={{backgroundColor:"#3c6dd3", borderRadius:"5px",marginTop:"2px", marginBottom:"5px"}}>
               <p style={{margin:"0"}}>{heroesData[id].base_mana + (heroesData[id].base_int * 12)} + {Math.round(heroesData[id].base_mana_regen  + ((heroesData[id].base_int * 0.05)* 10)) /10}/s</p>
-              
-            </div> 
-             
+            </div>
            </div>
-            
-
+ 
+            <div className="heroDetailsStats">
+            <h1 style={{margin:"5px 0px 10px 0px"}}>Attack</h1>
+ 
+               <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Damage</p>
+                </div>
+                <p>{heroesData[id].base_attack_min} - {heroesData[id].base_attack_max}</p>    
+            </div>
+            <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Base Attack Speed</p>
+                </div>
+                <p>{heroesData[id].attack_rate}</p>      
+            </div>
+            <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Range</p>
+                </div>
+                <p>{heroesData[id].attack_range}</p>      
+            </div>
+            <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Projectile Speed</p>
+                </div>
+                <p>{heroesData[id].projectile_speed}</p>      
+            </div>
+           </div>
+ 
+           <div className="heroDetailsStats">
+            <h1 style={{margin:"5px 0px 10px 0px"}}>Defense</h1>
+ 
+               <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Armor</p>
+                </div>
+                <p>{Math.round(((heroesData[id].base_agi * 0.167) + heroesData[id].base_armor) * 10) / 10}</p>      
+            </div>
+            <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Magic Resistance</p>
+                </div>
+                <p>{heroesData[id].base_mr +( heroesData[id].base_int * .1)}</p>      
+            </div>
+           </div>
+ 
+            <div className="heroDetailsStats">
+            <h1 style={{margin:"5px 0px 10px 0px"}}>Mobility</h1>
+ 
+               <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Movement Speed</p>
+                </div>
+                <p>{heroesData[id].move_speed}</p>      
+            </div>
+            <div className="attributeContainer">
+                <div style={{display:"flex", alignItems:"center"}}>
+                  <p>Vision</p>
+                </div>
+                <p>{heroesData[id].day_vision} \ {heroesData[id].night_vision}</p>      
+            </div>
+           </div>
+           </div>
+          </div>
+          <div style={{display:"flex",justifyContent:"center"}}>
+            {mappedItems}
+          </div>
              
             {/* {heroLore[id]} */}
-            
+           
             <div>
               <button onClick={()=> setDisplay("lore")}>Lore</button>
               <button onClick={()=> setDisplay("stats")}>Stats</button>
@@ -181,9 +220,10 @@ const mappedRoles = heroesData[id].roles.map((role,key)=>{
             </div>
         </div>
       )  
-    
-
-    
+   
+ 
+   
 }
-
+ 
 export default HeroDetails
+ 
