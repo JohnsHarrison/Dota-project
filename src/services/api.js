@@ -39,6 +39,19 @@ return response.data
 
 export async function getHeroesItems(id){
 const response = await axios.get(`https://api.opendota.com/api/heroes/${id}/itemPopularity`)
+// console.log(response.data)
+return response.data
+}
+
+export async function getHeroesMatches(id){
+const response = await axios.get(`https://api.opendota.com/api/heroes/${id}/matches`)
+// console.log(response.data)
+return response.data
+}
+
+export async function getHeroesMatchups(id){
+const response = await axios.get(`https://api.opendota.com/api/heroes/${id}/matchups`)
 console.log(response.data)
 return response.data
 }
+

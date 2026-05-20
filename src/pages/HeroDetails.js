@@ -12,7 +12,8 @@ import HoverPopupItem from "../components/HoverPopupItem"
 import Strength_icon from "../assets/Strength_icon.png"
 import Agility_icon from "../assets/Agility_icon.png"
 import Intelligence_icon from "../assets/Intelligence.png"
- 
+import RecentHeroMatches from "../components/RecentHeroMatches"
+import HeroMatchups from "../components/HeroMatchUps"
  
  
  
@@ -31,14 +32,17 @@ const mappedAbilities = (heroAbilities[heroesData[id].name].abilities).flat().ma
      
    
       <HoverPopupAbility data={heroAbilityData[data]}>
-        <img src={`https://cdn.cloudflare.steamstatic.com${heroAbilityData[data].img}`}/>
+        <img src={`https://cdn.cloudflare.steamstatic.com${heroAbilityData[data].img}`} alt=""/>
       </HoverPopupAbility>
    
   )
   }
 })
-const mappedRoles = heroesData[id].roles.map((role,key)=>{
-    return(<p style={{margin:"0px 5px 5px 0px"}}>{role}</p>)
+const mappedRoles = heroesData[id].roles.map((role,index,key)=>{
+  const isLast = index === heroesData[id].roles.length - 1
+    return(
+    <p style={{margin:"0px 5px 5px 0px"}}>{role}{!isLast ? " | " : null}</p>
+  )
   })
 
 const mappedItems = popularItems && Object.entries(popularItems).map(([category, itemObj]) => (
@@ -46,7 +50,7 @@ const mappedItems = popularItems && Object.entries(popularItems).map(([category,
     <h3 style={{margin:"0"}}>{category.toUpperCase().replaceAll("_", " ")}</h3>
       {Object.entries(itemObj).map(([itemName]) => (
       <HoverPopupItem data={items[itemIDs[itemName]]}>  
-      <img style={{height:"24px",width:"32px",marginRight:"5px"}} key={itemName} src={`https://cdn.cloudflare.steamstatic.com/${items[itemIDs[itemName]].img}`}/>
+      <img style={{height:"24px",width:"32px",marginRight:"5px"}} key={itemName} src={`https://cdn.cloudflare.steamstatic.com/${items[itemIDs[itemName]].img}`} alt=""/>
       </HoverPopupItem>   
     ))}
     
@@ -57,8 +61,8 @@ const mappedItems = popularItems && Object.entries(popularItems).map(([category,
 useEffect(() => {
 
   const fetchData = async () => {     
-            const results  = await (getHeroesItems(id));
-            setPopularItems(results)    
+            const items  = await getHeroesItems(id);
+            setPopularItems(items)    
         }
       fetchData()
   const link = document.querySelector("link[rel='icon']");
@@ -76,7 +80,7 @@ useEffect(() => {
           <div className="heroDetailsHeader">
             <div style={{display:"flex", flexDirection:"column"}}>
             <div style={{display: "flex", width: "500px", textAlign: "left", flexDirection: "row", alignItems: "center", marginBottom:"10px"}}>
-              <img style={{marginRight:'10px', width:"250px", height:"150px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[id].img}`}/>
+              <img style={{marginRight:'10px', width:"250px", height:"150px"}} src={`https://cdn.cloudflare.steamstatic.com${heroesData[id].img}`} alt=""/>
               <div>
                 <p style={{fontSize:"32px", margin:"0px 0px 10px 0px"}}>
                   {heroesData[id].localized_name}
@@ -209,13 +213,13 @@ useEffect(() => {
            
             <div>
               <button onClick={()=> setDisplay("lore")}>Lore</button>
-              <button onClick={()=> setDisplay("stats")}>Stats</button>
-              <button onClick={()=> setDisplay("games")}>Recent Games</button>
+              <button onClick={()=> setDisplay("pro matchups")}>Pro Matchups</button>
+              <button onClick={()=> setDisplay("recent pro matches")}>Recent Pro Matches</button>
             </div>
             <div>
-              {display === "lore" ? <p>LORE</p>  :
-               display === "stats" ? <p>STATS</p> :
-               display === "games" ? <p>GAMES</p>
+              {display === "lore" ? <p>{heroLore[id]}</p>  :
+               display === "pro matchups" ? <HeroMatchups id={id}/> :
+               display === "recent pro matches" ? <RecentHeroMatches id={id}/>
                :null}
             </div>
         </div>
