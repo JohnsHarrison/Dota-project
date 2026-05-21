@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getVideogames, getGosuGamerNews } from "../services/api";
 
 
 function Home() {
@@ -19,7 +20,8 @@ const [id,setID] = useState('')
        }else{
         setStream("eslcs")
        }
-       console.log(num)
+    //    console.log(num)
+    
   }, []);
 
     return (
@@ -64,7 +66,7 @@ const [id,setID] = useState('')
             <button onClick={()=>{setStream("eslcs")}}>
                 Counter Strike 2
             </button>
-             <button onClick={()=>{setStream("iannihilate")}}>
+             <button onClick={()=>{setStream("dashducks")}}>
                 TEST
             </button>
         </div>

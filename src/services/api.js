@@ -51,7 +51,24 @@ return response.data
 
 export async function getHeroesMatchups(id){
 const response = await axios.get(`https://api.opendota.com/api/heroes/${id}/matchups`)
-console.log(response.data)
+// console.log(response.data)
 return response.data
 }
 
+export async function getVideogames() {
+    const response = await axios.get('https://api.pandascore.co/dota2/teams?filter[location]=US&page=5&per_page=100', {
+        headers: {
+            accept: 'application/json',
+            authorization: `Bearer ${process.env.REACT_APP_PANDASCORE_KEY}`
+        }
+    })
+    // console.log(response.data)
+    return response.data
+}
+
+export async function getGosuGamerNews(game) {
+    const rssUrl = `https://www.gosugamers.net/${game}/articles/rss`
+    const response = await axios.get(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`)
+    if (response.data.status !== 'ok') throw new Error('RSS feed error')
+    return response.data.items
+}

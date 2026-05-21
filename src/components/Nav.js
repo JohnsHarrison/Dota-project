@@ -10,6 +10,7 @@ function Nav(){
             <NavLink to={"/recentmatches"}>Recent Matches</NavLink>
             {/* remove hero aftertesting */}
             <NavLink to={"/herodetails/1"}>Hero Details</NavLink>
+            <NavLink to={"/news"}>News</NavLink>
          </nav>
     )
 }
