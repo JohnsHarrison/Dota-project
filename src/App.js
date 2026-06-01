@@ -7,6 +7,7 @@ import RecentMatch from './components/RecentMatch';
 import SearchedMatch from "./pages/SearchedMatch"
 import HeroDetails from './pages/HeroDetails';
 import News from './pages/News';
+import RecentGameCard from "./components/RecentGameCard"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/recentmatches' element={<RecentMatch/>}/>
         <Route path='/herodetails/:id' element={<HeroDetails/>}/>
         <Route path='/news' element={<News/>}/>
+        <Route path='/test' element={<RecentGameCard/>}/>
      </Routes>
     </div>
   );

@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
-import { getGosuGamerNews} from "../services/api";
+import { getGosuGamerNews,testCall} from "../services/api";
 
 function News() {
     const [articles, setArticles] = useState([]);
-    const [game, setGame] = useState("dota2")
+    const [game, setGame] = useState("entertainment")
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [lastUpdated, setLastUpdated] = useState(null);
@@ -28,6 +28,7 @@ function News() {
 
     useEffect(() => {
         fetchNews();
+        testCall()
         const interval = setInterval(fetchNews, 5 * 60 * 1000);
         return () => clearInterval(interval);
     }, [fetchNews]);
@@ -35,8 +36,9 @@ function News() {
     return (
         <div className="newsContainer">
             <div className="newsHeader">
-                <h2>GosuGamers Dota 2 News</h2>
+                <h2>GosuGamers {game} News</h2>
                 <button onClick={(()=>{setGame("counterstrike")})}>Counterstrike</button>
+                <button onClick={(()=>{setGame("dota2")})}>Dota 2</button>
                 <div className="newsHeaderMeta">
                     {lastUpdated && <span className="newsLastUpdated">Updated: {lastUpdated.toLocaleTimeString()}</span>}
                     <button className="newsRefreshBtn" onClick={fetchNews} disabled={loading}>

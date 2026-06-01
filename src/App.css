@@ -683,3 +683,28 @@ font-size: 10px;
   margin: 0;
   line-height: 1.5;
 }
+
+.RecentGameCardContainer{
+  height: 120px;
+  width: 240px;
+  border: 1px solid black;
+  container-type: inline-size;
+}
+
+.RecentGameCardContainerHeader{
+  display: flex;
+}
+.RecentGameCardContainerHeader p{
+  margin: 0;
+}
+
+.RecentGameCardContainer p{
+  font-size: 5cqi;
+}
+
+.pTest{
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width:"5px"
+}

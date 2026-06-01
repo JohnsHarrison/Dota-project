@@ -72,3 +72,14 @@ export async function getGosuGamerNews(game) {
     if (response.data.status !== 'ok') throw new Error('RSS feed error')
     return response.data.items
 }
+
+export async function testCall(){
+const response = await axios.get(`https://api.pandascore.co/matches/past?page[size]=1`,{
+        headers: {
+            accept: 'application/json',
+            authorization: `Bearer ${process.env.REACT_APP_PANDASCORE_KEY}`
+        }
+    })
+console.log(response.data)
+return response.data
+}
