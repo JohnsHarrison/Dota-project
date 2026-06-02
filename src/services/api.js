@@ -73,8 +73,8 @@ export async function getGosuGamerNews(game) {
     return response.data.items
 }
 
-export async function testCall(){
-const response = await axios.get(`https://api.pandascore.co/matches/past?page[size]=1`,{
+export async function getCompGames(){
+const response = await axios.get(`https://api.pandascore.co/matches/past?page[size]=50`,{
         headers: {
             accept: 'application/json',
             authorization: `Bearer ${process.env.REACT_APP_PANDASCORE_KEY}`

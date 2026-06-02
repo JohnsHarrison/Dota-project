@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { getGosuGamerNews,testCall} from "../services/api";
+import { getGosuGamerNews} from "../services/api";
 
 function News() {
     const [articles, setArticles] = useState([]);
@@ -28,7 +28,6 @@ function News() {
 
     useEffect(() => {
         fetchNews();
-        testCall()
         const interval = setInterval(fetchNews, 5 * 60 * 1000);
         return () => clearInterval(interval);
     }, [fetchNews]);

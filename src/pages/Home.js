@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getVideogames, getGosuGamerNews } from "../services/api";
+import { getVideogames, getGosuGamerNews, getCompGames } from "../services/api";
+import RecentGameCard from "../components/RecentGameCard";
 
 
 function Home() {
 const [stream, setStream] = useState("")
+const [gamesList, setGamesList]=useState([])
 const [darkMode, setDarkMode] = useState("&darkpopout")
 const [id,setID] = useState('')
+const scrollTrackRef = useRef(null)
+const posRef = useRef(0)
+const animRef = useRef(null)
+const pausedRef = useRef(false)
 
 
 
-      useEffect(() => {
+    useEffect(() => {
+       getCompGames().then(data => setGamesList(data))
 
        let num = Math.floor(Math.random() * 3)
        if(num === 0){
@@ -24,9 +31,39 @@ const [id,setID] = useState('')
     
   }, []);
 
+  useEffect(() => {
+    const track = scrollTrackRef.current
+    if (!track || !gamesList.length) return
+    posRef.current = 0
+
+    function animate() {
+      if (!pausedRef.current) {
+        posRef.current += 0.5
+        const halfWidth = track.scrollWidth / 2
+        if (posRef.current >= halfWidth) posRef.current = 0
+        track.style.transform = `translateX(-${posRef.current}px)`
+      }
+      animRef.current = requestAnimationFrame(animate)
+    }
+
+    animRef.current = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(animRef.current)
+  }, [gamesList])
+
     return (
         <div >
             <h3>home page</h3>
+            <div className="RecentGamesScrollBar">
+                <div
+                    className="RecentGamesScrollTrack"
+                    ref={scrollTrackRef}
+                    onMouseEnter={() => { pausedRef.current = true }}
+                    onMouseLeave={() => { pausedRef.current = false }}
+                >
+                    {gamesList.map((match, i) => <RecentGameCard key={i} match={match}/>)}
+                    {gamesList.map((match, i) => <RecentGameCard key={`d${i}`} match={match}/>)}
+                </div>
+            </div>
         <p>Current Live ESports</p>
         <p>now watching {stream}</p>
         <div className="embeddedVideo">

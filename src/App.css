@@ -685,10 +685,13 @@ font-size: 10px;
 }
 
 .RecentGameCardContainer{
-  height: 120px;
+  /* height: 120px; */
   width: 240px;
+  flex-shrink: 0;
   border: 1px solid black;
+  border-right: none;
   container-type: inline-size;
+  box-sizing: border-box;
 }
 
 .RecentGameCardContainerHeader{
@@ -699,12 +702,33 @@ font-size: 10px;
 }
 
 .RecentGameCardContainer p{
-  font-size: 5cqi;
-}
-
-.pTest{
-  white-space: nowrap;
+   font-size: 5cqi;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width:"5px"
+}
+
+.RecentGameCardContainerRow{
+  display: flex;
+  align-items: center;
+  height: 30px;
+}
+.RecentGameCardContainerRow img{
+  width: 25px;
+  height: 25px;
+  margin: 0px 15px 0px 15px;
+}
+
+.RecentGamesScrollBar{
+  overflow: hidden;
+  width: 100%;
+}
+
+.RecentGamesScrollTrack {
+  display: flex;
+  will-change: transform;
+}
+
+.RecentGamesScrollTrack > div {
+  flex-shrink: 0;
 }
