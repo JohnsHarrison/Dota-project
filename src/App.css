@@ -3,6 +3,33 @@
   max-width: 100vw;
   height: 100%;
   width: 100%;
+  background: #F4F6F4;
+  color: #1E1E1E;
+  font-weight: bold;
+}
+
+.navBar{
+  border: 1px solid black;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navBar p{
+  margin-left: 5px;
+  color: #1E1E1E;
+  text-decoration: none;
+}
+
+.navBar p:hover{
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+}
+
+.navBar img{
+  width: 100px;
+  cursor: pointer;
 }
  
 .matchScore{

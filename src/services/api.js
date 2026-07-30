@@ -80,6 +80,17 @@ const response = await axios.get(`https://api.pandascore.co/matches/past?page[si
             authorization: `Bearer ${process.env.REACT_APP_PANDASCORE_KEY}`
         }
     })
+// console.log(response.data)
+return response.data
+}
+
+export async function testAPI(){
+const response = await axios.get(`https://api.pandascore.co/dota2/tournaments/running`,{
+        headers: {
+            accept: 'application/json',
+            authorization: `Bearer ${process.env.REACT_APP_PANDASCORE_KEY}`
+        }
+    })
 console.log(response.data)
 return response.data
 }

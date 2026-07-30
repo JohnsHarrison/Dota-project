@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import { getVideogames, getGosuGamerNews, getCompGames } from "../services/api";
+import { getVideogames, getGosuGamerNews, getCompGames, testAPI } from "../services/api";
 import RecentGameCard from "../components/RecentGameCard";
+import News from "../components/News";
 
 
-function Home() {
+function Home({selectedGame}) {
+// const [game, setGame] = useState("")
 const [stream, setStream] = useState("")
 const [gamesList, setGamesList]=useState([])
 const [darkMode, setDarkMode] = useState("&darkpopout")
@@ -14,22 +16,28 @@ const posRef = useRef(0)
 const animRef = useRef(null)
 const pausedRef = useRef(false)
 
+const channels = [
+  { name: "dota2", value: "esl_dota2", display:"Dota 2"},
+  { name: "sc2", value: "esl_sc2", display:"StarCraft 2"},
+  { name: "counterstrike", value: "eslcs", display:"Counter Strike 2"},
+  { name: "lol", value: "riotgames", display:"League of Legends"},
+  { name: "valorant", value: "riotgamesoce", display:"Valorant"},
+]
+
 
 
     useEffect(() => {
+        testAPI()
        getCompGames().then(data => setGamesList(data))
-
-       let num = Math.floor(Math.random() * 3)
-       if(num === 0){
-        setStream("esl_dota2")
-       }else if(num === 1){
-        setStream("esl_sc2")
-       }else{
-        setStream("eslcs")
-       }
-    //    console.log(num)
+        if(selectedGame==="home"){
+       let num = Math.floor(Math.random() * 5)
+       setStream(channels[num])
+    }else{
+        const channel = channels.find(c => c.name === selectedGame)
+        if (channel) setStream(channel)
+    }
     
-  }, []);
+  }, [selectedGame]);
 
   useEffect(() => {
     const track = scrollTrackRef.current
@@ -52,26 +60,16 @@ const pausedRef = useRef(false)
 
     return (
         <div >
-            <h3>home page</h3>
-            <div className="RecentGamesScrollBar">
-                <div
-                    className="RecentGamesScrollTrack"
-                    ref={scrollTrackRef}
-                    onMouseEnter={() => { pausedRef.current = true }}
-                    onMouseLeave={() => { pausedRef.current = false }}
-                >
-                    {gamesList.map((match, i) => <RecentGameCard key={i} match={match}/>)}
-                    {gamesList.map((match, i) => <RecentGameCard key={`d${i}`} match={match}/>)}
-                </div>
-            </div>
-        <p>Current Live ESports</p>
-        <p>now watching {stream}</p>
+            {
+                selectedGame === "home" ? <div><p>Current Live ESports</p>
+        <p>now watching {stream.display}</p></div> : null
+            }
         <div className="embeddedVideo">
         <iframe
         title="ESL"
-    src={`https://player.twitch.tv/?channel=${stream}&parent=localhost&autoplay=true&muted=false&time=0s`}
-    height="600px"
-    width="1050px"
+    src={`https://player.twitch.tv/?channel=${stream.value}&parent=localhost&autoplay=true&muted=false&time=0s`}
+    height="450px"
+    width="800px"
     allowFullScreen>
         </iframe>
         <div style={{display:"flex", flexDirection:"column", position:"relative"}}>
@@ -85,9 +83,9 @@ const pausedRef = useRef(false)
             }
             }>{darkMode === "&darkpopout" ? "Disable Dark Mode" : "Enable Dark Mode"}</button>
         <iframe
-        title="esl chat" 
-        src={`https://www.twitch.tv/embed/${stream}/chat?parent=localhost${darkMode}`}
-        height="600px"
+        title="steam chat" 
+        src={`https://www.twitch.tv/embed/${stream.value}/chat?parent=localhost${darkMode}`}
+        height="450px"
         width="300px"
         sandbox>
     </iframe>
@@ -108,7 +106,10 @@ const pausedRef = useRef(false)
             </button>
         </div>
 
-        <div>
+        <News game={selectedGame}/>
+        
+
+        {/* <div>
             <p>testing with normal match ID 8598265551</p>
             <p>testing with tournament match ID 8451467455</p>
             <h3>Enter Match ID</h3>
@@ -117,7 +118,7 @@ const pausedRef = useRef(false)
                setID(input)}} placeholder="Match ID"/>
         
             <Link style={{textDecoration:"none", color:"inherit"}} to={`/match/${id}`}><button style={{width:"10%"}}>Search Match</button></Link>
-        </div>
+        </div> */}
      
         </div>
     )
