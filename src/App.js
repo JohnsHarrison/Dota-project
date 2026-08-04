@@ -1,7 +1,8 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useSearchParams } from 'react-router-dom';
 import Nav from './components/Nav';
 import Home from './pages/Home';
+import SubNav from './components/SubNav';
 import PlayerProfile from './pages/PlayerProfile';
 import RecentMatch from './components/RecentMatch';
 import SearchedMatch from "./pages/SearchedMatch"
@@ -16,7 +17,8 @@ import { getCompGames } from './services/api';
 function App() {
 
 const [gamesList, setGamesList] = useState([])
-const [selectedGame, setSelectedGame] = useState("home")
+const [searchParams] = useSearchParams()
+const selectedGame = searchParams.get("game") || "home"
 
 const scrollTrackRef = useRef(null)
 const posRef = useRef(0)
@@ -59,7 +61,10 @@ const pausedRef = useRef(false)
                     {gamesList.map((match, i) => <RecentGameCard key={`d${i}`} match={match}/>)}
                 </div>
             </div>
-      <Nav setSelectedGame = {setSelectedGame}/>
+      <div className="stickyNav">
+        <Nav/>
+        <SubNav selectedGame={selectedGame}/>
+      </div>
       <Routes>
         <Route path='/' element={<Home selectedGame={selectedGame}/>}/>
         <Route path='/match/:id' element={<SearchedMatch/>}/>
